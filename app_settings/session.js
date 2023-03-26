@@ -1,7 +1,7 @@
 const MongoStore = require('connect-mongo');
 // session and session store config .
 const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-camp";
-const secret = process.env.ENCREPTION_KEY;
+const secret = process.env.ENCREPTION_KEY || "secretKey";
 const store = new MongoStore({
     mongoUrl: dbUrl,
     touchAfter: 10 * 24 * 3600, // 10 jour ., 
