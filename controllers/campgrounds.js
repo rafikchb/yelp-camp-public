@@ -62,14 +62,14 @@ module.exports.edit = async (req, res) => {
         query: req.body.campground.location,
         limit: 1
     }).send();
-    let campground = req.body.campground  ; 
+    let campground = req.body.campground;
     // adding the geojson object provided by the mapbox api , into the model 
     campground.geometry = response.body.features[0].geometry;
     campground.author = req.user._id;
     campground.images = req.files.map(file => ({ url: file.path, filename: file.filename }));
 
-
     campground = await Campground.findByIdAndUpdate(id, { ...campground}); // I used destructuring just for fun .
+
     const images = req.files.map(file => ({ url: file.path, filename: file.filename }));
     campground.images.push(...images);
 
